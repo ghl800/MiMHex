@@ -42,6 +42,8 @@ void Game::PrintTree(std::string& ascii_tree, uint children) {
 }
 
 bool Game::IsValidMove(const Move& move) {
+	if (last_move.IsSwap() && move.GetLocation().IsSwap())
+		return false;
 	return current_board.IsValidMove(move);
 }
 

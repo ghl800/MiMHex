@@ -43,6 +43,8 @@ inline bool Player::ValidPlayer(const std::string& player) {
 // -----------------------------------------------------------------------------
 
 inline Location Location::OfCoords (std::string coords) {
+	if (coords.compare("swap") == 0)
+		return Swap();
 	ASSERT(ValidLocation(coords));
 	uint x = coords[0] >= 'a' ? coords[0] - 'a' : coords[0] - 'A';
 	uint y = coords[1] - '0';
@@ -59,6 +61,8 @@ inline Location::Location() {}
 inline uint Location::GetPos() const { return _pos; }
 
 inline std::string Location::ToCoords() const {
+	if (IsSwap())
+		return "swap";
 	std::stringstream coords;
 	coords << static_cast<char>(_pos % kBoardSizeAligned + 'a' - 1);
 	coords << _pos / kBoardSizeAligned;
@@ -79,6 +83,8 @@ inline bool Location::operator!=(Location loc) const {
 }
 
 inline bool Location::ValidLocation(const std::string& location) {
+	if (location.compare("swap") == 0)
+		return true;
 	if (location.size() == 0 || location.size() > 3)
 		return false;
 	uint x = location[0] >= 'a' ? location[0] - 'a' : location[0] - 'A';
@@ -101,6 +107,14 @@ inline bool Location::ValidLocation(uint x, uint y) {
 inline void Location::ToCoords(uint pos, uint& x, uint& y) {
 	x = pos % kBoardSizeAligned;
 	y = pos / kBoardSizeAligned;
+}
+
+static Location Location::Swap() {
+	return Location(swap_code);
+}
+
+bool Location::IsSwap() const {
+	return _pos = swap_code;
 }
 
 // -----------------------------------------------------------------------------
@@ -260,6 +274,10 @@ std::string Board::ToAsciiArt(Location last_move) const {
 }
 
 bool Board::IsValidMove(const Move& move) {
+	if(move.GetLocation().IsSwap())
+		// Swap after swap check in Game::IsValidMove
+		return _moves_left == kBoardSize*kBoardSize-1;
+
 	if (!Location::ValidPosition(move.GetLocation().GetPos()))
 		return false;
 	return _board[move.GetLocation().GetPos()] == 0;
