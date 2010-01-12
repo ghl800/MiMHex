@@ -53,6 +53,10 @@ inline Location Location::OfCoords (std::string coords) {
 	return Location(++x, y);
 }
 
+inline Location Location::Swap() {
+	return Location(swap_code);
+}
+
 inline Location::Location(uint x, uint y) : _pos(ToTablePos(x, y)) { }
 inline Location::Location(uint pos) : _pos(pos) {}
 
@@ -109,12 +113,8 @@ inline void Location::ToCoords(uint pos, uint& x, uint& y) {
 	y = pos / kBoardSizeAligned;
 }
 
-static Location Location::Swap() {
-	return Location(swap_code);
-}
-
-bool Location::IsSwap() const {
-	return _pos = swap_code;
+inline bool Location::IsSwap() const {
+	return _pos == swap_code;
 }
 
 // -----------------------------------------------------------------------------
@@ -169,6 +169,8 @@ Move Board::RandomLegalMove (const Player& player) const {
 
 inline void Board::PlayLegal (const Move& move) {
 	ASSERT(IsValidMove(move));
+	if (move.GetLocation().IsSwap())
+		return;
 	uint pos = move.GetLocation().GetPos();
 	if (move.GetPlayer() == Player::First()) {
 		_board[pos] = pos;

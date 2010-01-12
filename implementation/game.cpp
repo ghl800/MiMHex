@@ -52,4 +52,8 @@ bool Game::IsFinished() {
 	return current_board.IsFull();
 }
 
+Player Game::Winner() {
+	return current_board.Winner();
+}
+
 } // namespace Hex

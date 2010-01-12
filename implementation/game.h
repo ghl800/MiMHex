@@ -17,6 +17,7 @@ public:
 	void PrintTree(std::string& ascii_tree, uint children);
 	bool IsValidMove(const Move& move);
 	bool IsFinished();
+	Player Winner();
 
 private:
 	Board current_board;
