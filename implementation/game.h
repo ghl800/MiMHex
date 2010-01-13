@@ -18,12 +18,14 @@ public:
 	bool IsValidMove(const Move& move);
 	bool IsFinished();
 	Player Winner();
+	void SetSwapEnabled(bool);
 
 private:
 	Board current_board;
 	Board empty_board;
 	Location last_move;
 	MCTSTree tree;
+	bool is_swap_enabled;
 };
 
 } // namespace Hex

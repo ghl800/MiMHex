@@ -285,6 +285,14 @@ bool Board::IsValidMove(const Move& move) {
 	return _board[move.GetLocation().GetPos()] == 0;
 }
 
+inline bool Board::IsEmpty() const {
+	return _moves_left == kBoardSize*kBoardSize;
+}
+
+inline bool Board::IsSwapPossible() const {
+	return _moves_left == kBoardSize*kBoardSize-1;
+}
+
 // -----------------------------------------------------------------------------
 
 } // namespace Hex

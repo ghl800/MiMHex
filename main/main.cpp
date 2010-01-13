@@ -9,6 +9,7 @@
 #include "protocol.h"
 #include "protocol.cpp"
 #include "params.h"
+#include "openings_book.cpp"
 
 #include <iostream>
 #include <cstdlib>

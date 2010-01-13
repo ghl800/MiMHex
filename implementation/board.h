@@ -116,6 +116,8 @@ class Board {
   void GetPossiblePositions(ushort_ptr& locations);
   std::string ToAsciiArt(Location last_move) const;
   bool IsValidMove(const Move& move);
+  bool IsEmpty() const;
+  bool IsSwapPossible() const;
 
  private:
   void MakeUnion(uint pos);
