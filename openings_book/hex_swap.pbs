@@ -1,0 +1,9 @@
+#!/bin/tcsh
+#PBS -N HexSwap
+#PBS -q halo2
+#PBS -l nodes=4:ppn=4
+#PBS -l mem=1gb
+#PBS -l walltime=02:30:00
+
+cd $PBS_O_WORKDIR
+/usr/bin/time -p /opt/openmpi/gnu64/bin/mpiexec ./hex_swap
