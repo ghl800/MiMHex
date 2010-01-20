@@ -100,6 +100,15 @@ inline void HashBoard::Change(HashColor color, uint position, bool) {
 inline void HashBoard::Change(HashColor color, uint normal_position) {
 // normal_position in 0..(kBoardSizeAligned ^ 2)
 
+	if (!(normal_position + kBoardSizeAligned < kBoardSizeAligned * kBoardSizeAligned)){
+        std::cerr << "normal_position = " << normal_position << " : constraints failed" << std::endl;
+        assert(false);
+    }
+	if (!(normal_position >= kBoardSizeAligned)){
+        std::cerr << "normal_position = " << normal_position << " : constraints failed" << std::endl;
+        assert(false);
+    }
+
 	_hash_board[normal_position - kBoardSizeAligned + 1] += color * 64;
 	_hash_board[normal_position + 1] += color * 256;
 	_hash_board[normal_position + kBoardSizeAligned] += color * 1024;
@@ -107,8 +116,6 @@ inline void HashBoard::Change(HashColor color, uint normal_position) {
 	_hash_board[normal_position - 1] += color * 4;
 	_hash_board[normal_position - kBoardSizeAligned] += color * 16;
 	_played[normal_position] = true;
-
-	assert(normal_position + kBoardSizeAligned < kBoardSizeAligned * kBoardSizeAligned);
 
 	return;
 }
