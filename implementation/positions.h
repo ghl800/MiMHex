@@ -5,8 +5,12 @@ typedef unsigned int uint;
 
 namespace Hex {
 
-const uint kBoardSize = 11;
-const uint kBoardSizeAligned = 13;	// kBoardSize + 2
+#ifndef BOARD_SIZE
+#define BOARD_SIZE 11
+#endif
+
+const uint kBoardSize = BOARD_SIZE;
+const uint kBoardSizeAligned = kBoardSize + 2;
 
 uint normal_rows[kBoardSizeAligned * kBoardSizeAligned];
 uint transf[kBoardSize * kBoardSize];

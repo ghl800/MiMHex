@@ -12,7 +12,7 @@ main: main.cpp
 	$(CXX) $(OPTIONS) $(INCLUDE_DIR) -o $(DEST_DIR)/hex main.cpp
 
 gather_patterns: gather_patterns.cpp
-	$(CXX) $(OPTIONS) $(INCLUDE_DIR) -o $(DEST_DIR)/gather_patterns gather_patterns.cpp
+	$(CXX) $(OPTIONS) $(INCLUDE_DIR) -o $(DEST_DIR)/gather_patterns gather_patterns.cpp -DBOARD_SIZE=13
 
 clean:
 	rm -f ${DEST_DIR}/hex ${DEST_DIR}/hex_benchmark ${DEST_DIR}/gather_patterns
