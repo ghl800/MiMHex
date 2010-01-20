@@ -11,7 +11,7 @@ const uint kBoardSizeAligned = 13;	// kBoardSize + 2
 uint normal_rows[kBoardSizeAligned * kBoardSizeAligned];
 uint transf[kBoardSize * kBoardSize];
 
-void FillArrays() {
+int FillArrays() {
 	for (uint i = 0; i < kBoardSize; ++i)
 		for (uint j = 0; j < kBoardSize; ++j)
 			transf[i * kBoardSize + j] = (i + 1) * kBoardSizeAligned + j + 1;
@@ -19,6 +19,8 @@ void FillArrays() {
 	for (uint i = 0; i < kBoardSizeAligned; ++i)
 		for (uint j = 0; j < kBoardSizeAligned; ++j)
 			normal_rows[i * kBoardSizeAligned + j] = i;
+
+    return 0 ; // dummy
 }
 
 uint ParsePosition(const std::string &position) {
@@ -27,6 +29,10 @@ uint ParsePosition(const std::string &position) {
 		(position[1] - '0') * 10 + position[2] - '0';
 
 	return row * kBoardSize + column - 1;
+}
+
+namespace {
+int __dummy = FillArrays();
 }
 
 }

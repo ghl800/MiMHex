@@ -131,8 +131,6 @@ const Board Board::Empty() {
 
 	Board board;
 
-	FillArrays();
-
 	uint counter = 0;
 	for (uint i = 1; i <= kBoardSize; ++i) {
 		for (uint j = 1; j <= kBoardSize; j++) {
