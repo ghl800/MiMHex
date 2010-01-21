@@ -25,9 +25,8 @@ int main () {
 	}
 	
 	for (int pos=0; pos<asize*asize; pos++) {
-		if (all[pos] == 0) cout << "5., ";
-		else cout << (float)sum[pos]/(float)all[pos] << ", ";
-		if (pos%asize == asize-1) cout << endl;
+		if (all[pos] == 0) cout << "5." << endl;
+		else cout << (float)sum[pos]/(float)all[pos] << endl;
 	}
 	cout << endl;
 }

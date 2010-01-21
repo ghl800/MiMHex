@@ -77,7 +77,7 @@ class Location {
   static uint ToTablePos(uint x, uint y);
 
  private:
-  static const uint swap_code = 1000000;
+  static const uint swap_code = kBoardSizeAligned*kBoardSizeAligned;
   uint _pos;
 };
 

@@ -15,10 +15,9 @@
 #include <cstdlib>
 #include <boost/lexical_cast.hpp>
 
-int main(int argc, char* argv[]) {
+int main() {
 	Hex::Game game;
 	game.SetPlayoutsPerMove(50000);
-	game.SetSwapEnabled(false);
 
 	uint first_pos = Hex::kBoardSizeAligned;
 	uint last_pos = Hex::kBoardSizeAligned*(Hex::kBoardSizeAligned-1);
@@ -35,7 +34,7 @@ int main(int argc, char* argv[]) {
 		Hex::Player player = Hex::Player::Second();
 
 		while (!game.IsFinished()) {
-			Hex::Move move = game.GenMove(player);
+			Hex::Move move = game.GenMoveNoSwap(player);
 			game.Play(move);
 			player = player.Opponent();
 		}

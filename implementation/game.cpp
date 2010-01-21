@@ -6,7 +6,7 @@
 
 namespace Hex {
 
-Game::Game() : empty_board(Board::Empty()), last_move(0), is_swap_enabled(true) {
+Game::Game() : empty_board(Board::Empty()), last_move(0) {
 	ClearBoard();
 }
 
@@ -24,13 +24,16 @@ void Game::Play(const Move& move) {
 Move Game::GenMove(Player player) {
 	ASSERT(!current_board.IsFull());
 
-	if (is_swap_enabled) {
-		if (current_board.IsEmpty())
-			return Move(player, OpeningsBook::GetOpening(.05));
-		if (current_board.IsSwapPossible() && !last_move.IsSwap() && OpeningsBook::ShouldSwap(last_move))
-			return Move(player, Location::Swap());
-	}
+	if (current_board.IsEmpty())
+		return Move(player, OpeningsBook::GetOpening(.05));
+	if (current_board.IsSwapPossible() && !last_move.IsSwap() && OpeningsBook::ShouldSwap(last_move))
+		return Move(player, Location::Swap());
 
+	return GenMoveNoSwap(player);
+}
+
+Move Game::GenMoveNoSwap(Player player) {
+	ASSERT(!current_board.IsFull());
 	return tree.BestMove(player, current_board);
 }
 
@@ -63,10 +66,6 @@ bool Game::IsFinished() {
 
 Player Game::Winner() {
 	return current_board.Winner();
-}
-
-void Game::SetSwapEnabled(bool _arg) {
-	is_swap_enabled = _arg;
 }
 
 } // namespace Hex

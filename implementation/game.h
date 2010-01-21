@@ -11,6 +11,7 @@ public:
 	void ClearBoard();
 	void Play(const Move& move);
 	Move GenMove(Player player);
+	Move GenMoveNoSwap (Player player);
 	void SetMaxUTCTreeDepth(uint depth);
 	void PrintBoard(std::string& board);
 	void SetPlayoutsPerMove(uint playouts);
@@ -18,14 +19,12 @@ public:
 	bool IsValidMove(const Move& move);
 	bool IsFinished();
 	Player Winner();
-	void SetSwapEnabled(bool);
 
 private:
 	Board current_board;
 	Board empty_board;
 	Location last_move;
 	MCTSTree tree;
-	bool is_swap_enabled;
 };
 
 } // namespace Hex
