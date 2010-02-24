@@ -1,7 +1,7 @@
 #include <QtGui>
 #include <QApplication>
 
-#include "gogui.h"
+#include "hexgui.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
   QApplication a(argc, argv);
 
-  GoGui gogui;
-  gogui.show();
+  HexGui hexgui;
+  hexgui.show();
   return a.exec();
 }

@@ -1,16 +1,17 @@
 #include <QDebug>
 #include <boost/bind.hpp>
+#include <iostream>
 #include "manager.h"
 #include "BoardScene.h"
 
-manager::manager(BoardScene *scene, QObject * parent): QObject(parent), m_index(0), m_boardScene(scene) {
+manager::manager(BoardScene *scene, QObject * parent): QObject(parent), /*m_index(0),*/ m_boardScene(scene) {
   m_boardScene->setLeftButtonHandler(boost::bind(&manager::handleLeftClick, this, _1, _2));
   m_boardScene->setRightButtonHandler(boost::bind(&manager::handleRightClick, this, _1, _2));
 
 }
 
 void manager::handleLeftClick(int x, int y) {
-  switch (m_index) {
+/*  switch (m_index) {
   case 0:
     m_boardScene->addBlackStone(x, y);
     break;
@@ -35,12 +36,12 @@ void manager::handleLeftClick(int x, int y) {
   default:
     qDebug() << "wrong combobox current index";
     break;
-  }
-
+  }*/
+    std::cout << "LeftClick on (" << x << ", " << y << ")." << std::endl;
 }
 
 void manager::handleRightClick(int x, int y) {
-  switch (m_index) {
+/*  switch (m_index) {
   case 0:
   case 1:
     m_boardScene->removeStone(x, y);
@@ -63,6 +64,6 @@ void manager::handleRightClick(int x, int y) {
   default:
     qDebug() << "wrong combobox current index";
     break;
-  }
-
+  }*/
+    std::cout << "RightClick on (" << x << ", " << y << ")." << std::endl;
 }

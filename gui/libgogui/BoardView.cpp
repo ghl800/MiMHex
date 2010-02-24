@@ -37,7 +37,7 @@ void BoardView::wheelEvent(QWheelEvent *event)
 void BoardView::resizeEvent(QResizeEvent* event)
 {
   /* whole scene should be visible */
-  fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
+   fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
   QGraphicsView::resizeEvent(event);
 }
 

@@ -6,4 +6,7 @@ cd ..
 cd test
 rm -rf CMakeFiles cmake_install.cmake Makefile moc_* qrc_*
 cd ..
+cd hexgui
+rm -rf CMakeFiles cmake_install.cmake Makefile moc_* qrc_*
+cd ..
 

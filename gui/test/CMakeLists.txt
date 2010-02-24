@@ -1,5 +1,5 @@
-set ( SRCS main.cpp gogui.cpp manager.cpp)
-set ( MOC_HDRS gogui.h manager.h)
+set ( SRCS main.cpp hexgui.cpp manager.cpp)
+set ( MOC_HDRS hexgui.h manager.h)
 set ( RCS )
 set ( UIS )
 
