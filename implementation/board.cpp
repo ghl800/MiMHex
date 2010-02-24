@@ -13,28 +13,40 @@ inline Player Player::First() { return Player(0); }
 
 inline Player Player::Second() { return Player(1); }
 
+inline Player Player::None() { return Player(2); }
+
 inline Player Player::OfString (std::string player) {
 	ASSERT(ValidPlayer(player));
 	if (player == "black")
 		return Player::First();
-	else return Player::Second();
+	if (player == "white")
+        return Player::Second();
+    return Player::None();
 }
 
 inline Player Player::Opponent() const {
 	return Player(_val ^ 1);
 }
 
-inline bool Player::operator== (const Player& player) {
+inline bool Player::operator== (const Player& player) const {
 	return player._val == _val;
 }
 
-inline bool Player::operator!= (const Player& player) {
+inline bool Player::operator!= (const Player& player) const {
 	return player._val != _val;
 }
 
 inline Player::Player(uint val) : _val(val) {}
 
 inline uint Player::GetVal() { return _val; }
+
+std::string Player::ToString() const {
+    switch (_val) {
+        case 0: return std::string("black");
+        case 1: return std::string("white");
+    }
+    return std::string("none");
+}
 
 inline bool Player::ValidPlayer(const std::string& player) {
 	return player == "black" || player == "white";
@@ -58,6 +70,7 @@ inline Location::Location() {}
 
 inline uint Location::GetPos() const { return _pos; }
 
+
 inline std::string Location::ToCoords() const {
 	std::stringstream coords;
 	coords << static_cast<char>(_pos % kBoardSizeAligned + 'a' - 1);
@@ -69,6 +82,7 @@ inline uint Location::ToTablePos(uint x, uint y) {
 	ASSERT (ValidLocation(x, y));
 	return y * (kBoardSizeAligned) + x;
 }
+
 
 inline bool Location::operator==(Location loc) const {
 	return loc._pos == _pos;
@@ -204,6 +218,39 @@ inline Player Board::Winner() const {
 			return Player::First();
 	}
 	else return Player::Second();
+}
+
+inline void Board::fillWith(const Player& player) {
+    while (_moves_left) {
+	    PlayLegal(
+            Move(player,
+                Location(_fast_field_map[_moves_left-1]))
+            );
+    }
+}
+
+inline Player Board::nowWinner() const {
+    Board board;
+
+    board.Load(*this);
+    board.fillWith(Player::First());
+    Player w0_ = board.Winner();
+
+    board.Load(*this);
+    board.fillWith(Player::Second());
+    Player w1_ = board.Winner();
+
+    if (w0_==w1_)
+        return w0_;
+    return Player::None();
+}
+
+inline Player Board::getBoardAt(uint x, uint y) const {
+    switch (_board[Location(x, y).GetPos()]) {
+        case 0: return Player::None();
+        case -1: return Player::Second();
+    }
+    return Player::First();
 }
 
 inline void Board::Load (const Board& board) {

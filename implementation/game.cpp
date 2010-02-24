@@ -50,4 +50,22 @@ bool Game::IsFinished() {
 	return current_board.IsFull();
 }
 
+Player Game::getBoardAt(uint x, uint y) const {
+    return current_board.getBoardAt(x, y);
+}
+
+Player Game::nowWinner() const {
+    return current_board.nowWinner();
+}
+
+Player Game::CurrentPlayer() const {
+    if (current_board.IsFull())
+        return Player::None();
+    return current_board.CurrentPlayer();
+}
+
+Location Game::LastMove() const {
+    return last_move;
+}
+
 } // namespace Hex

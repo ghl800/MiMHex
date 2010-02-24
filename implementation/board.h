@@ -7,8 +7,8 @@ typedef unsigned int uint;
 
 namespace Hex {
 
-const uint kBoardSize = 13;
-const uint kBoardSizeAligned = 15;	// kBoardSize + 2
+const uint kBoardSize = 11;
+const uint kBoardSizeAligned = 13;	// kBoardSize + 2
 
 // -----------------------------------------------------------------------------
 
@@ -35,14 +35,17 @@ class Player {
  public:
   static Player First();
   static Player Second();
+  static Player None();
   static Player OfString (std::string);
 
   Player Opponent() const;
 
-  bool operator== (const Player&);
-  bool operator!= (const Player&);
+  bool operator== (const Player&) const;
+  bool operator!= (const Player&) const;
 
   uint GetVal();
+
+  std::string ToString() const;
 
   static bool ValidPlayer(const std::string& player);
 
@@ -62,6 +65,10 @@ class Location {
   Location (uint pos);
   Location (uint x, uint y);
   uint GetPos() const;
+
+  inline uint GetX() const { return _pos % kBoardSizeAligned; }
+  inline uint GetY() const { return _pos / kBoardSizeAligned; }
+
   std::string ToCoords() const;
   bool operator==(Location loc) const;
   bool operator!=(Location loc) const;
@@ -97,7 +104,6 @@ class Move {
 // -----------------------------------------------------------------------------
 
 class Board {
-
  public:
   const static Board Empty();
 
@@ -114,6 +120,11 @@ class Board {
   void GetPossiblePositions(ushort_ptr& locations);
   std::string ToAsciiArt(Location last_move) const;
   bool IsValidMove(const Move& move);
+
+  // some gui useful functions
+  Player nowWinner() const;
+  Player getBoardAt(uint, uint) const;
+  void fillWith(const Player&);
 
  private:
   void MakeUnion(uint pos);
