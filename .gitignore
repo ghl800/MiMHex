@@ -2,4 +2,16 @@ patternFetch/list.txt
 patternFetch/logs
 patternFetch/game.tmp
 patternFetch/games
-
+debug_build
+release_build
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+.cproject
+.project
+test/moc_*
+test/test
+libgogui/moc_*
+libgogui/qrc_*
+libgogui/libgogui.a
