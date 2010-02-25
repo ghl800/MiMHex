@@ -106,6 +106,8 @@ private:
 
 class gTreeView : public QTreeView
 {
+    Q_OBJECT
+
 protected slots:
     virtual void selectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
 

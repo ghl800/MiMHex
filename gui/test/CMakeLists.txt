@@ -1,5 +1,5 @@
-set ( SRCS main.cpp hexgui.cpp manager.cpp)
-set ( MOC_HDRS hexgui.h manager.h)
+set ( SRCS main.cpp manager.cpp)
+set ( MOC_HDRS manager.h)
 set ( RCS )
 set ( UIS )
 

@@ -9,6 +9,7 @@
 #include "protocol.h"
 #include "protocol.cpp"
 #include "params.h"
+#include "params.cpp"
 
 #include <iostream>
 #include <cstdlib>

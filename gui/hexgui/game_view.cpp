@@ -274,7 +274,7 @@ void GAME_View::updateTree()
     std::cout << "updateTree()" << std::endl;
 }
 
-virtual GAME_View::selectChanged(const QItemSelection& selected, const QItemSelecetion& deselected)
+void gTreeView::selectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
 {
 
 }

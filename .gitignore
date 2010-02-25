@@ -10,8 +10,6 @@ cmake_install.cmake
 Makefile
 .cproject
 .project
-test/moc_*
-test/test
-libgogui/moc_*
-libgogui/qrc_*
-libgogui/libgogui.a
+gui/libgogui/moc_*
+gui/libgogui/qrc_*
+gui/libgogui/libgogui.a

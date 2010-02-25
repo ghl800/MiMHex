@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include <iomanip>
+#include <inttypes.h>
 
 namespace Hex {
 
