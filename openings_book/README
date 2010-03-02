@@ -1,0 +1,47 @@
+TWORZENIE KSIĄŻKI OTWARĆ
+
+Kompilujemy program hex_swap, tzn. w katalogu main wykonujemy
+	make swap
+Program hex_swap przy każdym uruchomieniu rozgrywa po jednej grze na każde pole
+planszy (z dokładnością do symetrii). Każda gra rozpoczyna się od zagrania 
+czarnego kamienia na przypisane jej pole. Program wypisuje wyniki rozgrywek na
+standardowe wyjście.
+
+Po zgromadzeniu odpowiedniej ilości danych z programów hex_swap, kompilujemy 
+program make_book (w katalogu openings_book wykonujemy polecenie make). Program
+czyta ze standardowego wejścia dane zgromadzone przez hex_swap i wypisuje gotową
+książkę otwarć na standardowe wyjście.
+
+Przykład:
+
+cd main
+make swap
+./hex_swap >> ../hex_swap_out  (dużo razy)
+cd ..
+cd openings_book
+make
+./make_book < ../hex_swap_out > new_book.txt
+
+
+WSPÓŁPRACA Z PBS
+
+Jeżeli korzystamy z PBSa, to można użyć do tego pliku 
+openings_book/hex_swap.pbs.
+
+
+WYBÓR KSIĄŻKI OTWARĆ
+
+Domyślnie program próbuje odczytać książkę openings_book/openings_book.txt .
+Można podać inną lokalizację przez parametr -book, np.
+	./hex -book my_book.txt
+	
+	
+DOSTARCZONE PLIKI
+
+openings_book/dane -- dane z hex_swap
+openings_book/hex_swap.pbs -- skrypt do systemu PBS
+openings_book/make_book.cpp -- kod programu sumujące wyniki z hex_swap
+openings_book/Makefile
+openings_book/openings_book.png -- wizualizacja książki otwarć
+openings_book/openings_book.txt -- standardowa książka otwarć
+openings_book/README

@@ -2,6 +2,7 @@
 #include "board.h"
 #include "mcts_tree.h"
 #include "conditional_assert.h"
+#include "openings_book.h"
 
 namespace Hex {
 
@@ -21,6 +22,17 @@ void Game::Play(const Move& move) {
 }
 
 Move Game::GenMove(Player player) {
+	ASSERT(!current_board.IsFull());
+
+	if (current_board.IsEmpty())
+		return Move(player, OpeningsBook::GetOpening(.05));
+	if (current_board.IsSwapPossible() && !last_move.IsSwap() && OpeningsBook::ShouldSwap(last_move))
+		return Move(player, Location::Swap());
+
+	return GenMoveNoSwap(player);
+}
+
+Move Game::GenMoveNoSwap(Player player) {
 	ASSERT(!current_board.IsFull());
 	return tree.BestMove(player, current_board);
 }
@@ -42,12 +54,18 @@ void Game::PrintTree(std::string& ascii_tree, uint children) {
 }
 
 bool Game::IsValidMove(const Move& move) {
+	if (last_move.IsSwap() && move.GetLocation().IsSwap())
+		return false;
 	return current_board.IsValidMove(move);
 }
 
 bool Game::IsFinished() {
 	// TODO better check
 	return current_board.IsFull();
+}
+
+Player Game::Winner() {
+	return current_board.Winner();
 }
 
 } // namespace Hex

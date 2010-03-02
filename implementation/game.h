@@ -11,12 +11,14 @@ public:
 	void ClearBoard();
 	void Play(const Move& move);
 	Move GenMove(Player player);
+	Move GenMoveNoSwap (Player player);
 	void SetMaxUTCTreeDepth(uint depth);
 	void PrintBoard(std::string& board);
 	void SetPlayoutsPerMove(uint playouts);
 	void PrintTree(std::string& ascii_tree, uint children);
 	bool IsValidMove(const Move& move);
 	bool IsFinished();
+	Player Winner();
 
 private:
 	Board current_board;

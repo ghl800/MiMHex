@@ -9,6 +9,7 @@
 #include "protocol.h"
 #include "protocol.cpp"
 #include "params.h"
+#include "openings_book.cpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -32,7 +33,10 @@ int main(int argc, char* argv[]) {
 		Hex::Params::beta = boost::lexical_cast<float>(it->second);
 	if ((it = params.find("-initialization")) != params.end())
 		Hex::Params::initialization = boost::lexical_cast<unsigned>(it->second);
+	if ((it = params.find("-book")) != params.end())
+		Hex::OpeningsBook::SetBookFile(it->second);
 
+	Hex::OpeningsBook::ReadBookFromFile();
 	Hex::Protocol protocol;
 	protocol.Run(std::cin, std::cout);
 

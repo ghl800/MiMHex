@@ -2,11 +2,15 @@
 #define HEX_BOARD_H_
 
 #include <string>
-
 #include "fast_sample.h"
 #include "hash_board.h"
 
+typedef unsigned int uint;
+
 namespace Hex {
+
+//const uint kBoardSize = 11;
+//const uint kBoardSizeAligned = 13;	// kBoardSize + 2
 
 // -----------------------------------------------------------------------------
 
@@ -57,6 +61,7 @@ class Player {
 class Location {
  public:
   static Location OfCoords (std::string);
+  static Location Swap ();
   Location (uint pos);
   Location (uint x, uint y);
   uint GetPos() const;
@@ -67,12 +72,14 @@ class Location {
   static bool ValidLocation(uint x, uint y);
   static bool ValidPosition(uint pos);
   static void ToCoords(uint pos, uint& x, uint& y);
+  bool IsSwap() const;
 
  private:
   Location();
   static uint ToTablePos(uint x, uint y);
 
  private:
+  static const uint swap_code = kBoardSizeAligned*kBoardSizeAligned;
   uint _pos;
 };
 
@@ -95,7 +102,6 @@ class Move {
 // -----------------------------------------------------------------------------
 
 class Board {
-
  public:
   const static Board Empty();
 
@@ -112,6 +118,8 @@ class Board {
   void GetPossiblePositions(ushort_ptr& locations);
   std::string ToAsciiArt(Location last_move) const;
   bool IsValidMove(const Move& move);
+  bool IsEmpty() const;
+  bool IsSwapPossible() const;
 
  private:
   void MakeUnion(uint pos);
