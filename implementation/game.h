@@ -20,6 +20,13 @@ public:
 	bool IsFinished();
 	Player Winner();
 
+    //some gui useful functions
+    Player getBoardAt(uint, uint) const;
+    Player nowWinner() const;
+    //getTree()
+    Player CurrentPlayer() const;
+    Location LastMove() const;
+
 private:
 	Board current_board;
 	Board empty_board;

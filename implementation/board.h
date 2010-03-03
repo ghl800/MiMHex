@@ -37,14 +37,17 @@ class Player {
  public:
   static Player First();
   static Player Second();
+  static Player None();
   static Player OfString (std::string);
 
   Player Opponent() const;
 
   bool operator== (const Player&) const;
-  bool operator!= (const Player&);
+  bool operator!= (const Player&) const;
 
   uint GetVal();
+
+  std::string ToString() const;
 
   static bool ValidPlayer(const std::string& player);
 
@@ -65,6 +68,10 @@ class Location {
   Location (uint pos);
   Location (uint x, uint y);
   uint GetPos() const;
+
+  inline uint GetX() const { return _pos % kBoardSizeAligned; }
+  inline uint GetY() const { return _pos / kBoardSizeAligned; }
+
   std::string ToCoords() const;
   bool operator==(Location loc) const;
   bool operator!=(Location loc) const;
@@ -120,6 +127,11 @@ class Board {
   bool IsValidMove(const Move& move);
   bool IsEmpty() const;
   bool IsSwapPossible() const;
+
+  // some gui useful functions
+  Player nowWinner() const;
+  Player getBoardAt(uint, uint) const;
+  void fillWith(const Player&);
 
  private:
   void MakeUnion(uint pos);

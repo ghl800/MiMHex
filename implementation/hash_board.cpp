@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iomanip>
 #include <assert.h>
+#include <inttypes.h>
 
 namespace Hex {
 
@@ -13,6 +14,8 @@ HashBoard::HashBoard() {
     memset(_played, 0, _total_size * sizeof(bool));
 
 	uint _init_hash[_total_size];
+
+	FillArrays();
 
 	memset(_hash_board, 0,  _total_size * sizeof(uint));
 	memset(_init_hash, 0, _total_size * sizeof(uint));

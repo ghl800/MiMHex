@@ -4,6 +4,7 @@
 #include <string>
 
 #include "positions.h"
+#include "board.h"
 
 namespace Hex {
 
