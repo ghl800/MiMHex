@@ -3,8 +3,6 @@
 
 #include <string>
 
-#include "positions.h"
-
 typedef unsigned char uchar;
 
 namespace Hex {

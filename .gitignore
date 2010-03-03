@@ -7,6 +7,7 @@ patternFetch/logs/*
 main/gather_patterns
 main/hex
 main/hex_benchmark
+main/hex_swap
 tags
 debug_build
 release_build
@@ -16,6 +17,8 @@ cmake_install.cmake
 Makefile
 .cproject
 .project
-gui/libgogui/moc_*
-gui/libgogui/qrc_*
+gui/*/moc_*
+gui/*/qrc_*
 gui/libgogui/libgogui.a
+gui/hexgui/HexGui
+*~

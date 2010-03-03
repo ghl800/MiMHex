@@ -1,5 +1,10 @@
-#include "fast_sample.h"
+#ifndef FAST_SAMPLE_CPP_
+#define FAST_SAMPLE_CPP_
 
+#include "fast_sample.h"
+#include "positions.h"
+
+#include <string.h>
 #include <sstream>
 
 namespace Hex {
@@ -178,3 +183,5 @@ inline double FastSample::get_all_sum() const {
 }
 
 } // namespace Hex
+
+#endif /* FAST_SAMPLE_CPP_ */

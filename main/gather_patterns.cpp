@@ -8,10 +8,15 @@
  *
  */
 
+#include "board_info.h"
+#include "board.h"
 #include "gtp.hpp"
 #include "gtp.cpp"
 #include "hash_board.h"
+#include "fast_sample.cpp"
 #include "hash_board.cpp"
+#include "pattern_data.cpp"
+
 
 #include <iostream>
 #include <inttypes.h>

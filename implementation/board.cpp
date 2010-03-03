@@ -5,10 +5,6 @@
 #include <sstream>
 #include <iostream>
 
-#include "fast_sample.cpp"
-#include "hash_board.cpp"
-#include "pattern_data.cpp"
-
 
 namespace Hex {
 

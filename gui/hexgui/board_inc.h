@@ -12,6 +12,11 @@
 //#include "params.h"
 
 #include "board.h"
+
+#include "fast_sample.h"
+#include "hash_board.h"
+#include "pattern_data.hpp"
+
 //#include "gtp.h"
 #include "mcts_node.h"
 #include "mcts_tree.h"

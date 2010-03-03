@@ -1,4 +1,5 @@
 #include "hash_board.h"
+#include "positions.h"
 
 #include <sstream>
 #include <iomanip>

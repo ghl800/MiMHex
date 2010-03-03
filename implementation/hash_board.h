@@ -3,12 +3,9 @@
 
 #include <string>
 
-#include "positions.h"
-#include "board.h"
-
 namespace Hex {
 
-typedef enum HashColor {HBlack = 1, HWhite = 2};
+enum HashColor {HBlack = 1, HWhite = 2};
 
 class HashBoard {
 public:

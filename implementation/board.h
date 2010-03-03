@@ -2,10 +2,11 @@
 #define HEX_BOARD_H_
 
 #include <string>
+#include "board_info.h"
 #include "fast_sample.h"
 #include "hash_board.h"
+#include "pattern_data.hpp"
 
-typedef unsigned int uint;
 
 namespace Hex {
 

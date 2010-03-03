@@ -23,8 +23,8 @@ MCTSNode* MCTSNode::FindChildToSelect(uint children_number) {
 
 
 float MCTSNode::Eval() {
-	float ucb_weight = GetUCBWeight();
-	return GetUCB() * ucb_weight + GetRAVE() * (1.0 - ucb_weight);
+	float current_ucb_weight = GetUCBWeight();
+	return GetUCB() * current_ucb_weight + GetRAVE() * (1.0 - current_ucb_weight);
 }
 
 MCTSNode* MCTSNode::FindBestChild(uint children_number) {

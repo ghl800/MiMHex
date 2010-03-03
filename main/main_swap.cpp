@@ -1,5 +1,6 @@
 #define INSERT_ASSERTIONS
 
+#include "board.h"
 #include "board.cpp"
 #include "playout.cpp"
 #include "gtp.cpp"
@@ -8,8 +9,11 @@
 #include "game.cpp"
 #include "protocol.h"
 #include "protocol.cpp"
-#include "params.h"
+#include "params.cpp"
 #include "openings_book.cpp"
+#include "fast_sample.cpp"
+#include "hash_board.cpp"
+#include "pattern_data.cpp"
 
 #include <iostream>
 #include <cstdlib>
